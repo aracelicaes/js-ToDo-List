@@ -1,4 +1,5 @@
 import Project from './project';
+import Task from './task';
 import projects from './globals';
 import { settingLocalStorage, gettingLocalStorage } from './storage';
 
@@ -18,7 +19,7 @@ function displayProject(project) {
   console.log(theProject.id);
   console.log(projects);
   projects.forEach((project) => {
-    if (project.id == theProject.id) {
+    if (project.id === theProject.id) {
       const projectDisplayContainer = document.querySelector(".projectDisplay");
       const newTaskBtn = document.createElement('button');
       newTaskBtn.setAttribute('id', project.id);
@@ -44,6 +45,8 @@ const projectSubmitEvent = () => {
 };
 
 projectSubmitEvent();
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
   gettingLocalStorage();
