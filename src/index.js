@@ -3,6 +3,8 @@ import Task from './task';
 import projects from './globals';
 import { settingLocalStorage, gettingLocalStorage } from './storage';
 
+
+// ALL PROJECT RELATED
 function createProject() {
   const theName= document.getElementById("projectName").value;
   const newProject = new Project(theName);
@@ -46,7 +48,55 @@ const projectSubmitEvent = () => {
 
 projectSubmitEvent();
 
+// ALL TASK RELATED
 
+const newTaskBtnEvent = () => {
+  projects.forEach((project) => {
+    const newTaskBtn = document.getElementById(project.id);
+    if (project.id == newTaskBtn.id) {
+    console.log(newTaskBtn);
+    newTaskBtn.addEventListener('click', (e) => {
+      displayTaskForm(project.id);
+    });
+    }
+  });
+}
+
+function displayTaskForm(id) {
+  const taskForm = document.querySelector(".theTaskForm");
+  const taskName = document.querySelector(".taskName");
+  taskName.setAttribute('id', id);
+  taskForm.classList.toggle("hidden");
+  console.log(taskForm);
+}
+
+newTaskBtnEvent();
+
+
+function createTask() {
+  const taskStatus = document.querySelector(".taskStatus").checked;
+  const taskName = document.querySelector(".taskName").value;
+  taskName.getAttribute("id");
+  console.log(taskName);
+  const taskDescription = document.querySelector(".taskDescription").value;
+  const taskDate = document.querySelector(".taskDate").value;
+  const taskPriority = document.querySelector(".taskPriority").selectedOptions[0].value;
+  
+  const newTask = new Task(taskStatus, taskName, taskDescription, taskDate, taskPriority);
+  tasks.push(newTask);
+  settingLocalStorage();
+  console.log(newTask);
+}
+
+const taskSubmitEvent = () => {
+  const taskSubmit = document.getElementById("taskBtn");
+  taskSubmit.addEventListener('click', (e) => {
+    e.preventDefault;
+    createTask();
+  });
+};
+
+taskSubmitEvent();
 
 window.addEventListener('DOMContentLoaded', () => {
   gettingLocalStorage();
