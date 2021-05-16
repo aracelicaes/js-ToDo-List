@@ -1,10 +1,11 @@
-import counter from './globals';
 import settingLocalStorage from './storage';
+
+const { v4: uuidv4 } = require('uuid');
 
 export default class Project {
   constructor(name) {
     this.name = name;
-    this.id = counter;
+    this.id = uuidv4();
     this.tasks = [];
     this.newTaskBtn = document.querySelector('.newTask');
     this.newTaskBtn.setAttribute('id', this.id);
@@ -15,8 +16,6 @@ export default class Project {
     } else {
       this.newTaskBtn.style.display = 'block';
     }
-
-    counter += 1;
   }
 
   addTask(task) {

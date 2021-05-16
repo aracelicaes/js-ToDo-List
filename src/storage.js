@@ -1,4 +1,4 @@
-import { projects, counter, tasks } from './globals';
+import { projects, tasks } from './globals';
 
 export const settingLocalStorage = () => {
   localStorage.setItem('projectsList', JSON.stringify(projects));
@@ -12,9 +12,6 @@ export const gettingLocalStorage = () => {
     projectList.forEach((e) => {
       projects.push(e);
     });
-    const last = projects.length - 1;
-    counter = projects[last].id + 1;
-    console.log(counter);
   }
 
   if (taskList || taskList == null) {
